@@ -129,7 +129,16 @@ public class Main {
 
 
     //--------- Problem   7: Count Vowels - Count number of vowels in the given string. ----------------
-
+    static void countVowels(String string2){
+        int length7= string2.length(), count = 0 ;
+        for(int i=0; i<length7 ;i++){
+            char ch = string2.charAt(i);
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u'){
+               count++;
+            }
+        }
+        System.out.println("The no of vowels are :" +count+ " ");
+    }
 
     //---------------------Problem 7 over ---------------------------------
 
@@ -142,7 +151,14 @@ public class Main {
 
     //--------- Problem  8 Character Frequency - Count frequency of a given character in a string.----------------
 
-
+    static void charFrequency(String string8, Character freqChar){
+        int length8= string8.length();
+        int frequency =0;
+        for(int i=0; i< length8; i++){
+            if(string8.charAt(i) == freqChar) frequency++;
+        }
+        System.out.println("The Frequency of "+freqChar+ " is "+frequency+" ");
+    }
     //---------------------Problem 8 over ---------------------------------
 
 
@@ -154,7 +170,34 @@ public class Main {
 
     //--------- Problem   9: Longest Word - Find the longest word in a sentence.  ----------------
 
+    static void longestWord(String string9){
+        int length9 = string9.length();
+        int maxLen = 0;
+        int currLen = 0;
+        String longest = "";
+        String current = "";
 
+        for(int i = 0; i < length9; i++){
+            char ch = string9.charAt(i);
+            if(ch != ' '){
+                currLen++;
+                current += ch;
+            } else {
+                if(currLen > maxLen){
+                    maxLen = currLen;
+                    longest = current;
+                }
+                currLen = 0;
+                current = "";
+            }
+        }
+
+        if(currLen > maxLen){
+            longest = current;
+        }
+
+        System.out.println("The longest word is: " + longest);
+    }
     //---------------------Problem 9 over ---------------------------------
 
 
@@ -165,6 +208,24 @@ public class Main {
 
 
     //--------- Problem  10: Names Starting with Character - Count names starting with a given character. ----------------
+    static void initialCount(String names, int noNames, char initial){
+        int count = 0;
+        int i = 0;
+        while(i < names.length()){
+            if(names.charAt(i) == ' ' || i == names.length()-1){
+                // end of word found
+                if(i > 0){  // valid word
+                    char firstChar = names.charAt(i-1);  // last char before space
+                    if(Character.toUpperCase(firstChar) == Character.toUpperCase(initial)){
+                        count++;
+                    }
+                }
+            }
+            i++;
+        }
+        System.out.println("Count: " + count);
+    }
+
 
 
     //---------------------Problem 10 over ---------------------------------
@@ -286,7 +347,9 @@ public class Main {
 
 
         //--------- Problem 7 of the Assignment on 6th Jan 2026----------------
-
+        System.out.println("Enter a String: ");
+        String string2 = scanner.nextLine();
+        countVowels(string2);
         //---------------------Problem 7 over ---------------------------------
 
 
@@ -297,7 +360,12 @@ public class Main {
 
 
         //--------- Problem 8 of the Assignment on 6th Jan 2026----------------
+        System.out.println("Enter a String: ");
+        String string8 = scanner.nextLine();
+        System.out.println("Enter the character: ");
+        char freqChar = scanner.next().charAt(0);
 
+        charFrequency(string8,freqChar);
         //---------------------Problem 8 over ---------------------------------
 
 
@@ -307,7 +375,9 @@ public class Main {
 
 
         //--------- Problem 9 of the Assignment on 6th Jan 2026----------------
-
+        System.out.println("Enter a Sentance: ");
+        String string9 = scanner.nextLine();
+        longestWord(string9);
         //---------------------Problem 9 over ---------------------------------
 
 
@@ -318,7 +388,13 @@ public class Main {
 
 
         //--------- Problem 10 of the Assignment on 6th Jan 2026----------------
-
+        System.out.println("Enter Number of Names : ");
+        int noNames = scanner.nextInt();
+        System.out.println("Enter the names : ");
+        String names = scanner.nextLine();
+        System.out.println("Enter the character : ");
+        char initial = scanner.next().charAt(0);
+        initialCount(names,noNames,initial);
         //---------------------Problem 10 over ---------------------------------
 
 
